@@ -3,28 +3,16 @@ import logo from './logo.svg';
 import './App.css';
 import { Typography } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save'
+import Layout from './components/Layout';
+import TestGrid from './pages/TestGrid';
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <SaveIcon />
-        <Typography varient="h4">
-          James is cool!
-        </Typography>
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Layout></Layout>
+    
+    </>
   );
 }
 
