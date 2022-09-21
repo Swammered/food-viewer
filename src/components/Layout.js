@@ -1,12 +1,14 @@
-import React from 'react'
-import { Typography, Box, AppBar, Toolbar, IconButton, Button} from '@mui/material'
+import React, {useState} from 'react'
+import { Typography, Box, AppBar, Toolbar, IconButton, Button, TextField, InputAdornment} from '@mui/material'
 import TestGrid from '../pages/TestGrid'
 import MenuIcon from '@mui/icons-material/Menu'
 import Search from '../pages/Search'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-
+import SearchIcon from '@mui/icons-material/Search';
+import { Start } from '@mui/icons-material'
 
 const Layout = () => {
+    const [searchText, setSearchText] = useState("I'm here.")
 
     return (
         <>
@@ -24,14 +26,30 @@ const Layout = () => {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                            News
+                            <TextField 
+                            onChange={
+                                (e) => {
+                                    setSearchText(e.target.value)
+                                }
+                            }
+                            label="Search" 
+                            variant="outlined"
+                            inputProps={{
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon />
+                                    </InputAdornment>
+                                )
+                            }}
+                            
+                            />
                         </Typography>
                         <Button color="inherit">Login</Button>
                         </Toolbar>
                     </AppBar>
                     </Box>
 
-                <Typography>I'm the Layout</Typography>
+                <Typography variant="h2">{searchText}</Typography>
                 <Routes>
                     <Route exact path='/' element={<TestGrid/>} />
                     <Route exact path='/testgrid' element={<TestGrid/>} />
