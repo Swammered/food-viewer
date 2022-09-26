@@ -6,9 +6,24 @@ import Search from '../pages/Search'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
 import { Start } from '@mui/icons-material'
+import yelp from '../api/yelp'
 
 const Layout = () => {
-    const [searchText, setSearchText] = useState("I'm here.")
+    const [searchText, setSearchText] = useState("I'm here. Good")
+    const [results, setResults] = useState([])
+    let mySearchTest = "im here"
+
+    const searchApi = async () => {
+        const response = await yelp("24416", "Sushi")
+        console.log(response.data.businesses)
+        setResults(response.data.bisuniesses)
+        //response.data.businesses
+    }
+
+    const doSearch = (e) => {
+        setSearchText(e.target.value)
+        searchApi()
+    }
 
     return (
         <>
@@ -31,19 +46,19 @@ const Layout = () => {
                                 onKeyPress={
                                     (e)=> {
                                         if (e.key === "Enter"){
-                                            setSearchText(e.target.value)       
+                                            doSearch(e)       
                                         }
                                     }
                                 }
                                 label="Search" 
                                 variant="outlined"
-                                inputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchIcon />
-                                        </InputAdornment>
-                                    )
-                                }}
+                                // inputProps={{
+                                //     startAdornment: (
+                                //         <InputAdornment position="start">
+                                //             <SearchIcon />
+                                //         </InputAdornment>
+                                //     )
+                                // }}
                                 
                                 />
                             </Typography>
@@ -56,7 +71,7 @@ const Layout = () => {
                     <Routes>
                         <Route exact path='/' element={<TestGrid/>} />
                         <Route exact path='/testgrid' element={<TestGrid/>} />
-                        <Route exact path='/search' element={<Search/>} />
+                        <Route exact path='/search' element={<Search searchResults={results}/>} />
                     </Routes>
 
                 </BrowserRouter>
