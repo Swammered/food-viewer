@@ -16,7 +16,7 @@ const Layout = () => {
     const searchApi = async () => {
         const response = await yelp("24416", "Sushi")
         console.log(response.data.businesses)
-        setResults(response.data.bisuniesses)
+        setResults(response.data.businesses)
         //response.data.businesses
     }
 
