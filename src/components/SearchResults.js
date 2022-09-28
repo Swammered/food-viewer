@@ -27,4 +27,9 @@ const SearchResults = ({food, title}) => {
     )
 }
 
+//include picture, title, ratings, number of ratings
+//go to mui card
+//choose a card, copy from card to card
+//replace card in search results with copied code
+
 export default SearchResults
