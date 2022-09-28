@@ -13,8 +13,8 @@ const Layout = () => {
     const [results, setResults] = useState([])
     let mySearchTest = "im here"
 
-    const searchApi = async () => {
-        const response = await yelp("24416", "Sushi")
+    const searchApi = async (term) => {
+        const response = await yelp("24416", term)
         console.log(response.data.businesses)
         setResults(response.data.businesses)
         //response.data.businesses
@@ -22,7 +22,7 @@ const Layout = () => {
 
     const doSearch = (e) => {
         setSearchText(e.target.value)
-        searchApi()
+        searchApi(e.target.value)
     }
 
     return (
@@ -52,13 +52,13 @@ const Layout = () => {
                                 }
                                 label="Search" 
                                 variant="outlined"
-                                // inputProps={{
-                                //     startAdornment: (
-                                //         <InputAdornment position="start">
-                                //             <SearchIcon />
-                                //         </InputAdornment>
-                                //     )
-                                // }}
+                                inputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    )
+                                }}
                                 
                                 />
                             </Typography>
