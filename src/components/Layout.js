@@ -5,13 +5,11 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Search from '../pages/Search'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
-import { Start } from '@mui/icons-material'
 import yelp from '../api/yelp'
 
 const Layout = () => {
     const [searchText, setSearchText] = useState("I'm here. Good")
     const [results, setResults] = useState([])
-    let mySearchTest = "im here"
 
     const searchApi = async (term) => {
         const response = await yelp("24416", term)

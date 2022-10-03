@@ -37,11 +37,12 @@ const SearchResults = ({food, title}) => {
                                             </Typography>
                                             <Typography variant="body2" color="text.secondary">
                                             {value.location.address1} <br/>
-                                            {value.location.city}, {value.location.state}
+                                            {value.location.city}, {value.location.state} <br/>
+                                            {value.is_closed} here<br/>
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
-                                            <Button size="small">{value.rating} / 5</Button>
+                                            <Button size="small">{value.rating} / 5 ({value.review_count})</Button>
                                             {/* <Button size="small">Learn More</Button> */}
                                         </CardActions>
                                     </Card>
