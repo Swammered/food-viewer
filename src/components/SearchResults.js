@@ -1,8 +1,18 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 
-const SearchResults = ({food, title}) => {
+const SearchResults = ({food, title, setRestId }) => {
+
+const navigate = useNavigate()
+
+const goToDetails = (id) => {
+    setRestId(id)
+    navigate("/detail")
+}
+
+
     return(
         <>
             {
@@ -38,11 +48,12 @@ const SearchResults = ({food, title}) => {
                                             <Typography variant="body2" color="text.secondary">
                                             {value.location.address1} <br/>
                                             {value.location.city}, {value.location.state} <br/>
-                                            {value.is_closed} here<br/>
+                                            <Typography color={"blue"}>{value.rating} / 5 ({value.review_count}) </Typography>
+                                            
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
-                                            <Button size="small">{value.rating} / 5 ({value.review_count})</Button>
+                                            <Button size="small" onClick={(e) => goToDetails(value.id)}> Details </Button>
                                             {/* <Button size="small">Learn More</Button> */}
                                         </CardActions>
                                     </Card>
