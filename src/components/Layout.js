@@ -72,10 +72,9 @@ const Layout = () => {
 
                     <Typography variant="h6">Your search results are {searchText}</Typography>
                     <Routes>
-                        <Route exact path='/' element={<TestGrid />} />
-                        <Route exact path='/testgrid' element={<TestGrid />} />
-                        <Route exact path='/Details' element={<Details />} />
+                        <Route exact path='/' element={<Search searchResults={results} />} />
                         <Route exact path='/search' element={<Search searchResults={results} />} />
+                        <Route exact path='/detail' element={<Detail />} />
                     </Routes>
 
                 </BrowserRouter>
