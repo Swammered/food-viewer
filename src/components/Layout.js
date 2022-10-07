@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Typography, Box, AppBar, Toolbar, IconButton, Button, TextField, InputAdornment, Paper } from '@mui/material'
 import TestGrid from '../pages/TestGrid'
-import Details from '../pages/Details'
+import Detail from '../pages/Detail'
 import MenuIcon from '@mui/icons-material/Menu'
 import Search from '../pages/Search'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'

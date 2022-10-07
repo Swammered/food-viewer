@@ -2,7 +2,7 @@ import React from "react"
 import { Typography } from "@mui/material"
 
 
-const Details = () => {
+const Detail = () => {
 
     return (
         <>
@@ -10,4 +10,4 @@ const Details = () => {
         </>
     )
 }
-export default Details
+export default Detail
