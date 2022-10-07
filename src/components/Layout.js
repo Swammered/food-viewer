@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react'
-import { Typography, Box, AppBar, Toolbar, IconButton, Button, TextField, InputAdornment, Paper} from '@mui/material'
+import React, { useState, useEffect } from 'react'
+import { Typography, Box, AppBar, Toolbar, IconButton, Button, TextField, InputAdornment, Paper } from '@mui/material'
 import TestGrid from '../pages/TestGrid'
+import Details from '../pages/Details'
 import MenuIcon from '@mui/icons-material/Menu'
 import Search from '../pages/Search'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
 import yelp from '../api/yelp'
 
@@ -23,57 +24,58 @@ const Layout = () => {
         searchApi(e.target.value)
     }
 
-    useEffect( () => {
+    useEffect(() => {
         searchApi("Chinese")
-    }, [] )
+    }, [])
 
     return (
         <>
-            <Paper sx={{backgroundColor : "#eeeeee", pb: 2}}>
+            <Paper sx={{ backgroundColor: "#eeeeee", pb: 2 }}>
                 <BrowserRouter>
                     <Box sx={{ flexGrow: 1 }}>
                         <AppBar position="static">
                             <Toolbar>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                sx={{ mr: 2 }}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                <TextField 
-                                onKeyPress={
-                                    (e)=> {
-                                        if (e.key === "Enter"){
-                                            doSearch(e)       
+                                <IconButton
+                                    size="large"
+                                    edge="start"
+                                    color="inherit"
+                                    aria-label="menu"
+                                    sx={{ mr: 2 }}
+                                >
+                                    <MenuIcon />
+                                </IconButton>
+                                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                    <TextField
+                                        onKeyPress={
+                                            (e) => {
+                                                if (e.key === "Enter") {
+                                                    doSearch(e)
+                                                }
+                                            }
                                         }
-                                    }
-                                }
-                                label="Search" 
-                                variant="outlined"
-                                inputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <SearchIcon />
-                                        </InputAdornment>
-                                    )
-                                }}
-                                
-                                />
-                            </Typography>
-                            <Button color="inherit">Login</Button>
+                                        label="Search"
+                                        variant="outlined"
+                                        inputProps={{
+                                            startAdornment: (
+                                                <InputAdornment position="start">
+                                                    <SearchIcon />
+                                                </InputAdornment>
+                                            )
+                                        }}
+
+                                    />
+                                </Typography>
+                                <Button color="inherit">Login</Button>
                             </Toolbar>
                         </AppBar>
-                        </Box>
+                    </Box>
 
                     <Typography variant="h6">Your search results are {searchText}</Typography>
                     <Routes>
-                        <Route exact path='/' element={<TestGrid/>} />
-                        <Route exact path='/testgrid' element={<TestGrid/>} />
-                        <Route exact path='/search' element={<Search searchResults={results}/>} />
+                        <Route exact path='/' element={<TestGrid />} />
+                        <Route exact path='/testgrid' element={<TestGrid />} />
+                        <Route exact path='/Details' element={<Details />} />
+                        <Route exact path='/search' element={<Search searchResults={results} />} />
                     </Routes>
 
                 </BrowserRouter>
