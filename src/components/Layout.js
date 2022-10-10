@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Typography, Box, AppBar, Toolbar, IconButton, Button, TextField, InputAdornment, Paper } from '@mui/material'
-import TestGrid from '../pages/TestGrid'
 import Detail from '../pages/Detail'
 import MenuIcon from '@mui/icons-material/Menu'
 import Search from '../pages/Search'
@@ -17,6 +16,10 @@ const Layout = () => {
         const response = await yelp("24416", term)
         console.log(response.data.businesses)
         setResults(response.data.businesses)
+
+        const response2 = await fetch("/api/yelp")
+        const data = await response2.json()
+        console.log("hi", data)
         //response.data.businesses
     }
 
