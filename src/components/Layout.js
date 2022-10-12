@@ -9,11 +9,12 @@ import yelp from '../api/yelp'
 
 const Layout = () => {
     const [searchText, setSearchText] = useState("I'm here. Good")
+    const [searchZip, setZipText] = useState("I'm zip")
     const [results, setResults] = useState([])
     const [restId, setRestId] = useState("nothing to see here")
 
-    const searchApi = async (term) => {
-        const response = await yelp("24416", term)
+    const searchApi = async (term, zip) => {
+        const response = await yelp(zip, term)
         console.log(response.data.businesses)
         setResults(response.data.businesses)
 
@@ -22,15 +23,24 @@ const Layout = () => {
         console.log("hi", data)
         //response.data.businesses
     }
-
-    const doSearch = (e) => {
-        setSearchText(e.target.value)
-        searchApi(e.target.value)
+    // const doSearch = (e) => {
+    //     setSearchText(e.target.value)
+    //     searchApi(e.target.value)
+    // }
+    const doSearch = (term, zip) => { //add zip back into (term, zip)
+        console.log('we are trying this out')
+        console.log(term)
+        console.log(zip)
+        searchApi(term, zip)
     }
-
-    useEffect(() => {
-        searchApi("Chinese")
-    }, [])
+    const setSearch = (e) => {
+        console.log(e)
+        setSearchText(e)
+    }
+    const setZip = (e) => {
+        console.log(e)
+        setZipText(e)
+    }
 
     return (
         <>
@@ -53,7 +63,7 @@ const Layout = () => {
                                         onKeyPress={
                                             (e) => {
                                                 if (e.key === "Enter") {
-                                                    doSearch(e)
+                                                    setSearch(e.target.value)
                                                 }
                                             }
                                         }
@@ -66,15 +76,35 @@ const Layout = () => {
                                                 </InputAdornment>
                                             )
                                         }}
-
                                     />
+                                    <TextField
+                                        onKeyPress={
+                                            (e) => {
+                                                if (e.key === "Enter") {
+                                                    setZip(e.target.value)
+                                                }
+                                            }
+                                        }
+                                        label="Zip-Code"
+                                        variant="outlined"
+                                        sx={{ml: 1}}
+                                        inputProps={{
+                                            startAdornment: (
+                                                <InputAdornment position="start">
+                                                    <SearchIcon />
+                                                </InputAdornment>
+                                            )
+                                        }}
+                                    />
+                                    <Button color='inherit' variant="outlined" sx={{ml: 1, mt: 1}} onClick={ () => doSearch(searchText, searchZip)}>Search</Button>
                                 </Typography>
                                 <Button color="inherit">Login</Button>
                             </Toolbar>
                         </AppBar>
                     </Box>
 
-                    <Typography variant="h6">Your search results are {searchText}</Typography>
+                    <Typography variant="h6">Your search results are looking for {searchText} around {searchZip}</Typography>
+                                    
                     <Routes>
                         <Route exact path='/' element={<Search searchResults={results} setRestId={setRestId} />} />
                         <Route exact path='/search' element={<Search searchResults={results} setRestId={setRestId} />} />
