@@ -8,8 +8,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import yelp from '../api/yelp'
 
 const Layout = () => {
-    const [searchText, setSearchText] = useState("I'm here. Good")
-    const [searchZip, setZipText] = useState("I'm zip")
+    const [searchText, setSearchText] = useState("something")
+    const [searchZip, setZipText] = useState("zip")
     const [results, setResults] = useState([])
     const [restId, setRestId] = useState("nothing to see here")
 
@@ -27,11 +27,12 @@ const Layout = () => {
 
         //response.data.businesses
     }
-    // const doSearch = (e) => {
-    //     setSearchText(e.target.value)
-    //     searchApi(e.target.value)
-    // }
-    const doSearch = (term, location) => { //add zip back into (term, zip)
+// useEffect(( ) => {
+//     searchApi('24416','hamburger')
+
+// },[])
+
+    const doSearch = (term, location) => {
         console.log('trying to do the search:', term, location)
         searchApi(term, location)
     }
@@ -72,7 +73,7 @@ const Layout = () => {
                                         label="Search"
                                         variant="outlined"
                                         inputProps={{
-                                            startAdornment: (
+                                            startadornment: (
                                                 <InputAdornment position="start">
                                                     <SearchIcon />
                                                 </InputAdornment>
@@ -91,7 +92,7 @@ const Layout = () => {
                                         variant="outlined"
                                         sx={{ml: 1}}
                                         inputProps={{
-                                            startAdornment: (
+                                            startadornment: (
                                                 <InputAdornment position="start">
                                                     <SearchIcon />
                                                 </InputAdornment>
