@@ -13,25 +13,27 @@ const Layout = () => {
     const [results, setResults] = useState([])
     const [restId, setRestId] = useState("nothing to see here")
 
-    const searchApi = async (term, zip) => {
-        const response = await yelp(zip, term)
-        console.log(response.data.businesses)
-        setResults(response.data.businesses)
+    const searchApi = async (term, location) => {
+        // const response = await yelp(zip, term)
+        // console.log(response.data.businesses)
+        // setResults(response.data.businesses)
+        // const location = '76048'
 
-        const response2 = await fetch("/api/yelp")
+        const response2 = await fetch(`/api/yelp?term=${term}&location=${location}`)
         const data = await response2.json()
         console.log("hi", data)
+
+        setResults(data.businesses)
+
         //response.data.businesses
     }
     // const doSearch = (e) => {
     //     setSearchText(e.target.value)
     //     searchApi(e.target.value)
     // }
-    const doSearch = (term, zip) => { //add zip back into (term, zip)
-        console.log('we are trying this out')
-        console.log(term)
-        console.log(zip)
-        searchApi(term, zip)
+    const doSearch = (term, location) => { //add zip back into (term, zip)
+        console.log('trying to do the search:', term, location)
+        searchApi(term, location)
     }
     const setSearch = (e) => {
         console.log(e)
